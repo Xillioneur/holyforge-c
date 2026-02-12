@@ -1,0 +1,5 @@
+name = "holyforge-c"
+pages_build_output_dir = "public"
+
+[vars]
+STUDIO_VERSION = "2.0.0"

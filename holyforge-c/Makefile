@@ -3,7 +3,7 @@ CFLAGS=-Wall -Wextra -O2
 SRC=src/main.c
 OUT=generator
 
-all: generate
+all: generate copy-wasm
 
 $(OUT): $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o $(OUT)
@@ -11,6 +11,11 @@ $(OUT): $(SRC)
 generate: $(OUT)
 	./$(OUT)
 
+copy-wasm:
+	mkdir -p public/static/js
+	cp ../holyforge-c-wasm/public/community.js public/static/js/
+	cp ../holyforge-c-wasm/public/community.wasm public/static/js/
+
 clean:
 	rm -f $(OUT)
-	rm -rf public/*.html
+	find public -name "*.html" -delete
