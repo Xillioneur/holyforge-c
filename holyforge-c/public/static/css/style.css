@@ -1,0 +1,109 @@
+:root {
+    --primary: #D4AF37; /* Gold */
+    --secondary: #1A237E; /* Deep Blue */
+    --bg: #FDFCF0; /* Cream */
+    --text: #2C3E50;
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'Lora', serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--secondary);
+    color: var(--white);
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.links a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+.hero {
+    text-align: center;
+    padding: 5rem 1rem;
+    background: linear-gradient(rgba(26, 35, 126, 0.7), rgba(26, 35, 126, 0.7)), url('/static/images/hero.jpg');
+    background-size: cover;
+    color: var(--white);
+}
+
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--secondary);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 2rem;
+}
+
+.content {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+h2 {
+    font-family: 'Cinzel', serif;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.5rem;
+}
+
+.game-list {
+    display: grid;
+    gap: 2rem;
+}
+
+.game-item {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.badge {
+    display: inline-block;
+    background: var(--secondary);
+    color: var(--white);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--secondary);
+    color: var(--white);
+    margin-top: 4rem;
+}
