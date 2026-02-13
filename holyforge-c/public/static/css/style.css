@@ -1,386 +1,291 @@
 :root {
-    /* Light Theme (Divine) - Default */
-    --bg: #f9f9f7;
-    --surface: #ffffff;
-    --text: #1a1a1a;
-    --text-dim: #5c5c5c;
-    --primary: #B8860B; /* Darker Gold for visibility */
-    --primary-glow: rgba(184, 134, 11, 0.2);
-    --secondary: #1A237E;
-    --white: #FFFFFF;
-    --accent-gradient: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #B8860B 100%);
-    --nav-bg: rgba(249, 249, 247, 0.95);
-    --border: rgba(0, 0, 0, 0.1);
+    /* The Divine Minimalist Palette */
+    --bg-light: #fbfbfd;
+    --bg-dark: #000000;
+    
+    --surface-light: rgba(255, 255, 255, 0.7);
+    --surface-dark: rgba(28, 28, 30, 0.7);
+    
+    --text-light: #1d1d1f;
+    --text-dim-light: #86868b;
+    --text-dark: #f5f5f7;
+    --text-dim-dark: #a1a1a6;
+    
+    --primary: #d4af37; /* Holy Gold */
+    --accent: #0071e3;  /* Apple Blue - used sparingly for logic/code */
+    
+    --glass-blur: 20px;
+    --border-radius: 12px;
+    --border-light: rgba(0, 0, 0, 0.1);
+    --border-dark: rgba(255, 255, 255, 0.1);
+
+    /* Default Theme (Light/Divine) */
+    --bg: var(--bg-light);
+    --surface: var(--surface-light);
+    --text: var(--text-light);
+    --text-dim: var(--text-dim-light);
+    --border: var(--border-light);
+    --nav-bg: rgba(251, 251, 253, 0.8);
 }
 
 [data-theme="dark"] {
-    --bg: #0f0f12;
-    --surface: #1e1e24;
-    --text: #e0e0e0;
-    --text-dim: #a0a0a0;
-    --primary: #D4AF37;
-    --primary-glow: rgba(212, 175, 55, 0.3);
-    --secondary: #1A237E;
-    --accent-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D592 50%, #D4AF37 100%);
-    --nav-bg: rgba(15, 15, 18, 0.95);
-    --border: rgba(212, 175, 55, 0.2);
+    --bg: var(--bg-dark);
+    --surface: var(--surface-dark);
+    --text: var(--text-dark);
+    --text-dim: var(--text-dim-dark);
+    --border: var(--border-dark);
+    --nav-bg: rgba(0, 0, 0, 0.8);
 }
 
 body {
-    font-family: 'Lora', serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg);
     color: var(--text);
     margin: 0;
-    line-height: 1.6;
-    overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+
+/* Typography Headers - Keeping the Divine Fonts */
+h1, h2, h3, .logo, .series-header {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
 }
 
 header {
     background-color: var(--nav-bg);
-    backdrop-filter: blur(10px);
+    backdrop-filter: saturate(180%%) blur(var(--glass-blur));
+    -webkit-backdrop-filter: saturate(180%%) blur(var(--glass-blur));
     border-bottom: 1px solid var(--border);
-    padding: 1rem 0;
+    padding: 0;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 9999;
+    height: 44px;
+    display: flex;
+    align-items: center;
 }
 
 nav {
+    max-width: 980px;
+    margin: 0 auto;
+    width: 100%%;
+    padding: 0 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
 }
 
 .logo {
-    font-family: 'Cinzel', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 17px;
+    letter-spacing: -0.01em;
     text-decoration: none;
-    letter-spacing: 2px;
+    color: var(--text);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
 }
 
-.links {
-    display: flex;
-    align-items: center;
-}
+.logo:hover { opacity: 1; }
+
+.links { display: flex; align-items: center; }
 
 .links a {
     color: var(--text);
     text-decoration: none;
-    margin-left: 2rem;
-    font-weight: 500;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 24px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
-.links a:hover {
-    color: var(--primary);
-}
+.links a:hover { opacity: 1; color: var(--primary); }
 
-/* Theme Toggle Button */
 .theme-toggle {
     background: transparent;
     border: 1px solid var(--primary);
     color: var(--primary);
-    padding: 0.4rem 0.8rem;
-    margin-left: 2rem;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 24px;
     cursor: pointer;
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
-.theme-toggle:hover {
-    background: var(--primary);
-    color: var(--bg);
-}
-
+/* Hero Section - Apple Style */
 .hero {
     text-align: center;
-    padding: 10rem 1rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('/static/images/hero.jpg');
-    background-size: cover;
-    background-position: center;
-    border-bottom: 2px solid var(--primary);
-}
-
-[data-theme="dark"] .hero {
-    background: linear-gradient(rgba(15, 15, 18, 0.6), rgba(15, 15, 18, 0.9)), url('/static/images/hero.jpg');
+    padding: 80px 22px;
+    background: var(--bg);
 }
 
 .hero h1 {
-    font-family: 'Cinzel', serif;
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    color: #fff;
-    text-shadow: 0 0 20px var(--primary-glow);
+    font-size: 56px;
+    line-height: 1.07143;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    margin-bottom: 6px;
+    background: linear-gradient(180deg, var(--text) 0%%, var(--text-dim) 100%%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    color: #ddd;
+    font-size: 24px;
+    line-height: 1.16667;
+    font-weight: 400;
+    letter-spacing: .009em;
+    color: var(--text-dim);
     max-width: 600px;
     margin: 0 auto;
 }
 
 .btn {
     display: inline-block;
-    background: var(--accent-gradient);
-    color: #000 !important;
-    padding: 1rem 2.5rem;
+    background: #0071e3; /* Apple Action Blue */
+    color: #fff !important;
+    padding: 12px 22px;
+    border-radius: 980px;
+    font-size: 17px;
+    font-weight: 400;
     text-decoration: none;
-    font-weight: bold;
-    border-radius: 2px;
-    margin-top: 2.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: none;
+    margin-top: 28px;
+    transition: all 0.3s ease;
 }
 
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px var(--primary-glow);
-}
+.btn:hover { background: #0077ed; transform: scale(1.02); }
 
-.content {
-    max-width: 1000px;
-    margin: 5rem auto;
-    padding: 0 2rem;
-}
-
-h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    text-align: center;
-    position: relative;
-    color: var(--text);
-}
-
-h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
+.btn.primary-gold {
     background: var(--primary);
-    margin: 1rem auto;
+    color: #000 !important;
+}
+
+/* Grid & Cards */
+.content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 22px;
+}
+
+.series-header {
+    font-size: 40px;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
 .game-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 734px) {
+    .game-list { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 40px; }
 }
 
 .game-item {
     background: var(--surface);
-    padding: 0;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--border-radius);
     border: 1px solid var(--border);
-}
-
-.game-item:hover {
-    transform: scale(1.05);
-    border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-[data-theme="dark"] .game-item:hover {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.game-content {
-    padding: 1.5rem;
-}
-
-.game-item h3 {
-    font-family: 'Cinzel', serif;
-    margin-top: 0;
-    color: var(--primary);
-}
-
-.badge {
-    display: inline-block;
-    background: var(--secondary);
-    color: #fff;
-    padding: 0.2rem 0.8rem;
-    border-radius: 2px;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    opacity: 0.8;
-}
-
-.game-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-}
-
-.btn-small {
-    background: transparent;
-    color: var(--primary);
-    padding: 0.5rem 1.2rem;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 2px;
-    font-size: 0.8rem;
-    border: 1px solid var(--primary);
-    transition: all 0.3s ease;
-}
-
-.game-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.btn-small.secondary {
-    background: transparent;
-    border-color: var(--text-dim);
-    color: var(--text-dim);
-}
-
-.btn-small.secondary:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-    background: transparent;
-}
-
-/* Game Player Styles */
-.game-container {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-    border: 2px solid var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
+    padding: 30px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
 }
 
-.game-placeholder-text {
-    color: var(--primary);
-    font-family: 'Cinzel', serif;
-    text-align: center;
+.game-item:hover {
+    transform: scale(1.01);
 }
 
-/* Blog Styles */
-.blog-list {
-    display: grid;
-    gap: 2rem;
+.game-item h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
 }
 
-.blog-item {
-    background: var(--surface);
-    padding: 2rem;
-    border-left: 2px solid var(--primary);
-    border-top: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+.game-item p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.42859;
 }
 
-.blog-item h3 a {
-    color: var(--text);
+.badge {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 10px;
+    background: rgba(0, 113, 227, 0.1);
+    color: #0071e3;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.game-meta {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-small {
+    font-size: 12px;
+    color: #0071e3;
     text-decoration: none;
-    font-family: 'Cinzel', serif;
+    font-weight: 400;
 }
 
-.blog-item h3 a:hover {
-    color: var(--primary);
-}
+.btn-small:hover { text-decoration: underline; }
 
-.meta {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    margin-bottom: 1rem;
-    display: block;
-}
-
-/* Community Styles */
-.prayer-form {
-    background: var(--surface);
-    padding: 3rem;
+/* Code specific style */
+code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    background: var(--border);
+    padding: 2px 4px;
     border-radius: 4px;
-    margin-bottom: 4rem;
-    border: 1px solid var(--border);
 }
 
-.input-field {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: inherit;
-    box-sizing: border-box;
-}
-
-.input-field:focus {
-    outline: none;
-    border-color: var(--primary);
-}
-
-textarea.input-field {
-    height: 150px;
-}
-
-.prayer-item {
-    background: var(--surface);
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-}
-
-.prayer-item strong {
-    color: var(--primary);
-    font-family: 'Cinzel', serif;
-}
-
+/* Footer */
 footer {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--surface);
+    padding: 60px 22px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
     color: var(--text-dim);
-    margin-top: 6rem;
-    border-top: 1px solid var(--border);
+    font-size: 12px;
 }
 
-.trademark-notice {
-    font-size: 0.7rem;
-    margin-top: 1rem;
-    opacity: 0.6;
-}
-
-/* Mission section */
-.mission {
-    text-align: center;
-    background: var(--surface);
-    padding: 6rem 2rem;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-}
-
-.mission p {
-    font-size: 1.4rem;
-    max-width: 800px;
+.footer-content {
+    max-width: 980px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Daily Word - Apple Note Style */
+.daily-word {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin: 40px 0;
+}
+
+.daily-word p {
+    font-family: 'Lora', serif;
+    font-size: 21px;
     font-style: italic;
+    color: var(--text);
+}
+
+/* Game Player Container */
+#game-container {
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    margin-top: 40px;
+    background: #000;
 }
