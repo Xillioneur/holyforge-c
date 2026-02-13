@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sanctuary | HolyForge Games</title>
+    <meta name="description" content="Communal prayer and reflection.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Sanctuary | HolyForge Games">
+    <meta property="og:description" content="Communal prayer and reflection.">
+    <meta property="og:image" content="https://holyforge.games/static/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="The Sanctuary | HolyForge Games">
+    <meta property="twitter:description" content="Communal prayer and reflection.">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</head>
+<body>
+    <div class="aura-container"><div class="aura"></div></div>
+    <header>
+        <nav>
+            <a href="/" class="logo">HolyForge</a>
+            <div class="links">
+                <a href="/games">Games</a>
+                <a href="/journal">Journal</a>
+                <a href="/ledger">Ledger</a>
+                <a href="/sanctuary">Sanctuary</a>
+                <a href="/about">About</a>
+                <button onclick="toggleTheme()" class="theme-toggle">Theme</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="content">
+            <h1 style="font-size: 56px; text-align: center; margin-bottom: 80px;">The Sanctuary</h1>
+            <div class="daily-word" style="text-align: left; padding: 60px;">
+                <h2 style="margin-top: 0; font-size: 32px;">Votive Stand</h2>
+                <p style="font-size: 19px; color: var(--text-dim);">Light a virtual candle.</p>
+                <div id="votive-stand" class="votive-stand"></div>
+                <button onclick="lightCandle(); forgeLog('SANCTUARY: Candle lit.')" class="btn" style="background: var(--text); color: var(--bg) !important; margin-top: 40px;">Light a Candle</button>
+            </div>
+        </section>
+        <script src="/static/js/community.js"></script>
+        <script>
+            function lightCandle() {
+                const s = document.getElementById('votive-stand');
+                const c = document.createElement('div');
+                c.className = 'candle'; c.innerHTML = '<div class="flame"></div>';
+                s.appendChild(c);
+            }
+        </script>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <p>&copy; 2026 HolyForge Games. Ad Maiorem Dei Gloriam.</p>
+                <p style="margin-top: 10px; opacity: 0.6;">Forged in the heart of C and the spirit of Truth.</p>
+            </div>
+            <div class="footer-section" style="text-align: right;">
+                <p>HolyForge Games is a trademark coming soon.</p>
+                <p style="opacity: 0.6;">v2.3.1 &bull; Industry Standard URLs</p>
+            </div>
+        </div>
+    </footer>
+    <div id="studio-terminal">
+        <div class="terminal-header"><span>LOG_MONITOR</span><span onclick="this.parentElement.parentElement.style.display='none'" style="cursor:pointer">[X]</span></div>
+        <div id="terminal-body"></div>
+    </div>
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        function forgeLog(msg) {
+            const body = document.getElementById('terminal-body');
+            if (!body) return;
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span>[${new Date().toLocaleTimeString()}]</span> ${msg}`;
+            body.appendChild(line);
+            if (body.children.length > 5) body.removeChild(body.firstChild);
+            document.getElementById('studio-terminal').style.display = 'block';
+        }
+        setTimeout(() => forgeLog('FORGE_READY: Clean URLs enabled.'), 1000);
+    </script>
+</body>
+</html>

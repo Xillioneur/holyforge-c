@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parables of Strategy | HolyForge Games</title>
+    <meta name="description" content="Command the faithful and defend the light in a grand strategy experience where faith is your strongest resource.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Parables of Strategy | HolyForge Games">
+    <meta property="og:description" content="Command the faithful and defend the light in a grand strategy experience where faith is your strongest resource.">
+    <meta property="og:image" content="https://holyforge.games/static/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Parables of Strategy | HolyForge Games">
+    <meta property="twitter:description" content="Command the faithful and defend the light in a grand strategy experience where faith is your strongest resource.">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</head>
+<body>
+    <div class="aura-container"><div class="aura"></div></div>
+    <header>
+        <nav>
+            <a href="/" class="logo">HolyForge</a>
+            <div class="links">
+                <a href="/games">Games</a>
+                <a href="/journal">Journal</a>
+                <a href="/ledger">Ledger</a>
+                <a href="/sanctuary">Sanctuary</a>
+                <a href="/about">About</a>
+                <button onclick="toggleTheme()" class="theme-toggle">Theme</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="content" style="max-width: 1200px;">
+            <div class="play-header">
+                <a href="/games" class="btn-small" style="margin-bottom: 20px; display: inline-block;">&larr; Back to Catalog</a>
+                <h1>Parables of Strategy</h1>
+                <div style="font-family: monospace; font-size: 13px; color: var(--primary); text-transform: uppercase;">HolyForge Originals</div>
+            </div>
+            <div id="game-container">
+                <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+                <div id="loading-overlay" style="position: absolute; top:0; left:0; width:100%; height:100%; background: #000; display:flex; flex-direction: column; align-items:center; justify-content:center; color: var(--primary); font-family: 'Cinzel', serif; z-index: 100;">
+                    <div style="font-size: 1.2rem; margin-bottom: 1rem;">Forging Engine</div>
+                    <div style="width: 200px; height: 2px; background: #222;">
+                        <div id="load-bar" style="width: 0%; height: 100%; background: var(--primary); transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+                <button class="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
+            </div>
+            <div class="play-info">
+                <div>
+                    <h3>Lore & Context</h3>
+                    <p>Command the faithful and defend the light in a grand strategy experience where faith is your strongest resource.</p>
+                    <h3 style="margin-top: 40px;">Technical Stack</h3>
+                    <p>c11.pure &bull; WASM</p>
+                </div>
+                <div class="play-sidebar">
+                    <h4 style="font-family: 'Cinzel'; color: var(--primary); margin-bottom: 20px;">How to Play</h4>
+                    <div><div class='control-item'><span>Orbit</span><span class='control-key'>Arrows</span></div></div>
+                    <h4 style="font-family: 'Cinzel'; color: var(--primary); margin-top: 40px; margin-bottom: 10px;">Status</h4>
+                    <p style="font-size: 14px;">Prototype</p>
+                </div>
+            </div>
+            <script>
+                window.addEventListener('unhandledrejection', function(event) { if (event.reason === 'unwind') event.preventDefault(); });
+                window.addEventListener('keydown', function(e) { if(e.code === 'Space' && e.target === document.body) e.preventDefault(); });
+                function toggleFullscreen() {
+                    const c = document.getElementById('game-container');
+                    if (!document.fullscreenElement) c.requestFullscreen(); else document.exitFullscreen();
+                }
+                const script = document.createElement('script');
+                script.src = '/static/js/parables.js?v=' + Date.now();
+                script.onload = () => {
+                    const Module = { canvas: document.getElementById('canvas'), noInitialRun: true,
+                        onRuntimeInitialized: () => {
+                            document.getElementById('load-bar').style.width = '100%';
+                            setTimeout(() => document.getElementById('loading-overlay').style.display = 'none', 500);
+                            forgeLog('RUNTIME_INIT: Parables of Strategy');
+                        }
+                    };
+                    window['createParablesModule'](Module).then(m => {
+                        if ('_start_parables' === 'main') { if (m.callMain) m.callMain(); else if (m._main) m._main(); }
+                        else if (m['_start_parables']) m['_start_parables']();
+                    });
+                };
+                document.body.appendChild(script);
+            </script>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <p>&copy; 2026 HolyForge Games. Ad Maiorem Dei Gloriam.</p>
+                <p style="margin-top: 10px; opacity: 0.6;">Forged in the heart of C and the spirit of Truth.</p>
+            </div>
+            <div class="footer-section" style="text-align: right;">
+                <p>HolyForge Games is a trademark coming soon.</p>
+                <p style="opacity: 0.6;">v2.3.1 &bull; Industry Standard URLs</p>
+            </div>
+        </div>
+    </footer>
+    <div id="studio-terminal">
+        <div class="terminal-header"><span>LOG_MONITOR</span><span onclick="this.parentElement.parentElement.style.display='none'" style="cursor:pointer">[X]</span></div>
+        <div id="terminal-body"></div>
+    </div>
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        function forgeLog(msg) {
+            const body = document.getElementById('terminal-body');
+            if (!body) return;
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span>[${new Date().toLocaleTimeString()}]</span> ${msg}`;
+            body.appendChild(line);
+            if (body.children.length > 5) body.removeChild(body.firstChild);
+            document.getElementById('studio-terminal').style.display = 'block';
+        }
+        setTimeout(() => forgeLog('FORGE_READY: Clean URLs enabled.'), 1000);
+    </script>
+</body>
+</html>

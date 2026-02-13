@@ -20,3 +20,4 @@ clean:
 	rm -f $(OUT)
 	find public -name "*.html" -delete
 	rm -rf public/games/*.html
+	rm -rf public/blog/*.html

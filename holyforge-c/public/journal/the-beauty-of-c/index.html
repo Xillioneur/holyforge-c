@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Aesthetic of Manual Memory | HolyForge Games</title>
+    <meta name="description" content="How the discipline of C allocation mirrors the intentionality of creation.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Aesthetic of Manual Memory | HolyForge Games">
+    <meta property="og:description" content="How the discipline of C allocation mirrors the intentionality of creation.">
+    <meta property="og:image" content="https://holyforge.games/static/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="The Aesthetic of Manual Memory | HolyForge Games">
+    <meta property="twitter:description" content="How the discipline of C allocation mirrors the intentionality of creation.">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</head>
+<body>
+    <div class="aura-container"><div class="aura"></div></div>
+    <header>
+        <nav>
+            <a href="/" class="logo">HolyForge</a>
+            <div class="links">
+                <a href="/games">Games</a>
+                <a href="/journal">Journal</a>
+                <a href="/ledger">Ledger</a>
+                <a href="/sanctuary">Sanctuary</a>
+                <a href="/about">About</a>
+                <button onclick="toggleTheme()" class="theme-toggle">Theme</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article class="content" style="max-width: 680px;">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <div style="font-family: monospace; color: var(--primary); font-size: 13px;">February 13, 2026</div>
+                <h1 style="font-size: 56px; margin-top: 15px; line-height: 1.1;">The Aesthetic of Manual Memory</h1>
+            </div>
+            <div style="font-size: 21px; line-height: 1.6; color: var(--text-dim);">
+                <p>In C, when you call <code>malloc()</code>, you are making a claim on the physical reality of the machine. You are requesting a specific portion of the universe to hold your data. When you call <code>free()</code>, you are returning that resource with gratitude.</p><p>This cycle of stewardship—requesting, using, and returning—is a fundamental aspect of the HolyForge philosophy.</p>
+            </div>
+            <p style="margin-top: 80px; text-align:center;"><a href="/journal" class="btn-small">&larr; Back to Journal</a></p>
+        </article>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <p>&copy; 2026 HolyForge Games. Ad Maiorem Dei Gloriam.</p>
+                <p style="margin-top: 10px; opacity: 0.6;">Forged in the heart of C and the spirit of Truth.</p>
+            </div>
+            <div class="footer-section" style="text-align: right;">
+                <p>HolyForge Games is a trademark coming soon.</p>
+                <p style="opacity: 0.6;">v2.3.1 &bull; Industry Standard URLs</p>
+            </div>
+        </div>
+    </footer>
+    <div id="studio-terminal">
+        <div class="terminal-header"><span>LOG_MONITOR</span><span onclick="this.parentElement.parentElement.style.display='none'" style="cursor:pointer">[X]</span></div>
+        <div id="terminal-body"></div>
+    </div>
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+        function forgeLog(msg) {
+            const body = document.getElementById('terminal-body');
+            if (!body) return;
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span>[${new Date().toLocaleTimeString()}]</span> ${msg}`;
+            body.appendChild(line);
+            if (body.children.length > 5) body.removeChild(body.firstChild);
+            document.getElementById('studio-terminal').style.display = 'block';
+        }
+        setTimeout(() => forgeLog('FORGE_READY: Clean URLs enabled.'), 1000);
+    </script>
+</body>
+</html>

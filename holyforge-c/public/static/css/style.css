@@ -12,14 +12,13 @@
     --text-dim-dark: #a1a1a6;
     
     --primary: #d4af37; /* Holy Gold */
-    --accent: #0071e3;  /* Apple Blue - used sparingly for logic/code */
+    --accent: #0071e3;  
     
     --glass-blur: 20px;
     --border-radius: 12px;
     --border-light: rgba(0, 0, 0, 0.1);
     --border-dark: rgba(255, 255, 255, 0.1);
 
-    /* Default Theme (Light/Divine) */
     --bg: var(--bg-light);
     --surface: var(--surface-light);
     --text: var(--text-light);
@@ -37,19 +36,40 @@
     --nav-bg: rgba(0, 0, 0, 0.8);
 }
 
+@keyframes aura-shift {
+    0% { transform: translate(-10%, -10%) rotate(0deg); }
+    50% { transform: translate(10%, 5%) rotate(180deg); }
+    100% { transform: translate(-10%, -10%) rotate(360deg); }
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
     background-color: var(--bg);
     color: var(--text);
     margin: 0;
-    line-height: 1.47059;
-    font-weight: 400;
-    letter-spacing: -0.022em;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
+    transition: background-color 0.5s ease;
+    min-height: 100vh;
 }
 
-/* Typography Headers - Keeping the Divine Fonts */
+.aura-container {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.aura {
+    position: absolute;
+    width: 150vw; height: 150vh;
+    background: radial-gradient(circle at center, var(--primary) 0%, transparent 50%);
+    filter: blur(100px);
+    animation: aura-shift 30s infinite linear;
+    opacity: 0.1;
+}
+
 h1, h2, h3, .logo, .series-header {
     font-family: 'Cinzel', serif;
     font-weight: 700;
@@ -57,10 +77,9 @@ h1, h2, h3, .logo, .series-header {
 
 header {
     background-color: var(--nav-bg);
-    backdrop-filter: saturate(180%%) blur(var(--glass-blur));
-    -webkit-backdrop-filter: saturate(180%%) blur(var(--glass-blur));
+    backdrop-filter: saturate(180%) blur(var(--glass-blur));
+    -webkit-backdrop-filter: saturate(180%) blur(var(--glass-blur));
     border-bottom: 1px solid var(--border);
-    padding: 0;
     position: sticky;
     top: 0;
     z-index: 9999;
@@ -72,73 +91,53 @@ header {
 nav {
     max-width: 980px;
     margin: 0 auto;
-    width: 100%%;
+    width: 100%;
     padding: 0 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .logo {
     font-size: 17px;
-    letter-spacing: -0.01em;
     text-decoration: none;
     color: var(--text);
-    opacity: 0.9;
-    transition: opacity 0.3s ease;
 }
-
-.logo:hover { opacity: 1; }
-
-.links { display: flex; align-items: center; }
 
 .links a {
     color: var(--text);
     text-decoration: none;
     font-size: 12px;
-    font-weight: 400;
     margin-left: 24px;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
 }
 
-.links a:hover { opacity: 1; color: var(--primary); }
-
 .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    font-size: 10px;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    font-size: 9px;
     padding: 2px 8px;
     border-radius: 20px;
     margin-left: 24px;
     cursor: pointer;
-    text-transform: uppercase;
 }
 
-/* Hero Section - Apple Style */
 .hero {
     text-align: center;
-    padding: 80px 22px;
-    background: var(--bg);
+    padding: 100px 22px;
 }
 
 .hero h1 {
-    font-size: 56px;
-    line-height: 1.07143;
-    font-weight: 600;
-    letter-spacing: -0.005em;
-    margin-bottom: 6px;
-    background: linear-gradient(180deg, var(--text) 0%%, var(--text-dim) 100%%);
+    font-size: 64px;
+    margin-bottom: 10px;
+    background: linear-gradient(180deg, var(--text) 0%, var(--text-dim) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .hero p {
     font-size: 24px;
-    line-height: 1.16667;
-    font-weight: 400;
-    letter-spacing: .009em;
     color: var(--text-dim);
     max-width: 600px;
     margin: 0 auto;
@@ -146,80 +145,68 @@ nav {
 
 .btn {
     display: inline-block;
-    background: #0071e3; /* Apple Action Blue */
+    background: var(--accent);
     color: #fff !important;
-    padding: 12px 22px;
+    padding: 12px 24px;
     border-radius: 980px;
-    font-size: 17px;
-    font-weight: 400;
     text-decoration: none;
-    margin-top: 28px;
-    transition: all 0.3s ease;
+    font-size: 17px;
+    margin-top: 30px;
+    border: none;
 }
 
-.btn:hover { background: #0077ed; transform: scale(1.02); }
-
-.btn.primary-gold {
-    background: var(--primary);
-    color: #000 !important;
-}
-
-/* Grid & Cards */
 .content {
     max-width: 980px;
     margin: 0 auto;
-    padding: 40px 22px;
+    padding: 60px 22px;
+    box-sizing: border-box;
 }
 
 .series-header {
-    font-size: 40px;
-    margin-top: 100px;
-    margin-bottom: 40px;
-    text-align: center;
+    font-size: 32px;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
 }
 
 .game-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
 @media (max-width: 734px) {
     .game-list { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 40px; }
+    .hero h1 { font-size: 48px; }
 }
 
 .game-item {
     background: var(--surface);
     backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border-radius: var(--border-radius);
     border: 1px solid var(--border);
     padding: 30px;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
 }
 
-.game-item:hover {
-    transform: scale(1.01);
-}
+.game-item:hover { transform: scale(1.01); }
 
-.game-item h3 {
-    font-size: 24px;
-    margin-bottom: 8px;
-}
+.game-content { flex-grow: 1; }
 
-.game-item p {
-    color: var(--text-dim);
-    font-size: 14px;
-    line-height: 1.42859;
-}
+.game-item h3 { font-size: 24px; margin-bottom: 10px; margin-top: 0; }
 
 .badge {
-    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-family: monospace;
     font-size: 10px;
     background: rgba(0, 113, 227, 0.1);
-    color: #0071e3;
+    color: var(--accent);
     padding: 4px 8px;
     border-radius: 4px;
     text-transform: uppercase;
@@ -233,60 +220,20 @@ nav {
 }
 
 .btn-small {
-    font-size: 12px;
-    color: #0071e3;
+    font-size: 13px;
+    color: var(--accent);
     text-decoration: none;
-    font-weight: 400;
 }
 
 .btn-small:hover { text-decoration: underline; }
 
-/* Code specific style */
-code {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    background: var(--border);
-    padding: 2px 4px;
-    border-radius: 4px;
-}
+/* Play Page Styles */
+.play-header { text-align: center; margin-bottom: 40px; }
 
-/* Footer */
-footer {
-    padding: 60px 22px;
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 12px;
-}
-
-.footer-content {
-    max-width: 980px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-}
-
-/* Daily Word - Apple Note Style */
-.daily-word {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 40px;
-    border-radius: var(--border-radius);
-    text-align: center;
-    margin: 40px 0;
-}
-
-.daily-word p {
-    font-family: 'Lora', serif;
-    font-size: 21px;
-    font-style: italic;
-    color: var(--text);
-}
-
-/* Game Player Container */
 #game-container {
     width: 100%;
     max-width: 1000px;
-    margin: 40px auto 0 auto;
+    margin: 0 auto;
     background: #000;
     border-radius: var(--border-radius);
     position: relative;
@@ -295,67 +242,103 @@ footer {
     align-items: center;
     overflow: hidden;
     aspect-ratio: 16 / 9;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
-#canvas {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-.play-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.play-header h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
+#canvas { width: 100%; height: 100%; object-fit: contain; }
 
 .fullscreen-btn {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 20px; right: 20px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 8px 16px;
     border-radius: 40px;
     cursor: pointer;
     font-size: 12px;
-    font-weight: 500;
     z-index: 101;
-    transition: all 0.3s ease;
-}
-
-.fullscreen-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
 }
 
 .play-info {
     max-width: 1000px;
     margin: 60px auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 300px;
     gap: 60px;
 }
 
-.play-info h3 {
-    font-size: 17px;
-    color: var(--primary);
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+@media (max-width: 734px) {
+    .play-info { grid-template-columns: 1fr; }
 }
 
-.play-info p {
-    font-size: 15px;
-    color: var(--text-dim);
-    line-height: 1.6;
+.play-sidebar {
+    background: var(--surface);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
 }
+
+.control-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.control-key {
+    font-family: monospace;
+    background: var(--border);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Studio Terminal */
+#studio-terminal {
+    position: fixed;
+    bottom: 20px; left: 20px;
+    width: 280px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 12px;
+    font-family: monospace;
+    font-size: 10px;
+    color: #0f0;
+    z-index: 10000;
+}
+
+.terminal-header { display: flex; justify-content: space-between; color: #666; margin-bottom: 8px; }
+
+/* Misc */
+.daily-word {
+    background: var(--surface);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+footer {
+    padding: 60px 22px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 12px;
+}
+
+.footer-content { max-width: 980px; margin: 0 auto; display: flex; justify-content: space-between; }
+
+.votive-stand { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.candle { width: 12px; height: 30px; background: #eee; position: relative; }
+.flame { 
+    width: 8px; height: 10px; background: #fa0; position: absolute; 
+    top: -10px; left: 2px; border-radius: 50%; animation: flicker 0.1s infinite alternate; 
+}
+@keyframes flicker { from { opacity: 0.8; } to { opacity: 1; } }
+
+pre { background: var(--surface); padding: 20px; border-radius: 8px; overflow: auto; }
+code { color: var(--accent); }
+.review-card { margin-bottom: 40px; }
+.manifesto p { font-size: 21px; color: var(--text-dim); }
