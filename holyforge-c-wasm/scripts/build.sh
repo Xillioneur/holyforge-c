@@ -23,6 +23,7 @@ em++ src/parables/main.cpp src/parables/engine.cpp src/parables/model.cpp \
   -O3
 
 # Build Code Review - Episode 8 (C++ / SDL2)
+# We removed ASYNCIFY and used emscripten_set_main_loop in main.cpp
 echo "Building Code Review Episode 8..."
 em++ src/code-review/episode-8/main.cpp \
      src/code-review/episode-8/game.cpp \
@@ -36,7 +37,6 @@ em++ src/code-review/episode-8/main.cpp \
   -s EXPORT_NAME='createEpisode8Module' \
   -s USE_SDL=2 \
   -s ALLOW_MEMORY_GROWTH=1 \
-  -s EXIT_RUNTIME=1 \
   -O2
 
 # Build Code Review - Episode 10 (C++ / Raylib)
@@ -56,7 +56,6 @@ em++ src/code-review/episode-10/main.cpp \
   -s EXPORT_NAME='createEpisode10Module' \
   -s USE_GLFW=3 \
   -s ASYNCIFY \
-  -s EXIT_RUNTIME=1 \
   -O2
 
 echo "WASM modules built in public/"
