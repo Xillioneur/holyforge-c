@@ -1,0 +1,6 @@
+[submodule "holyforge-c-wasm/src/code-review/episode-10"]
+	path = holyforge-c-wasm/src/code-review/episode-10
+	url = https://github.com/Xillioneur/episode-10.git
+[submodule "holyforge-c-wasm/src/code-review/episode-8"]
+	path = holyforge-c-wasm/src/code-review/episode-8
+	url = https://github.com/Xillioneur/episode-8.git
